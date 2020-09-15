@@ -1,0 +1,27 @@
+REPORT ZBS_ALV_GRID.
+
+DATA gdt_spfli TYPE STANDARD TABLE OF spfli.
+
+DATA ok_code LIKE sy-ucomm.
+
+START-OF-SELECTION.
+
+    CALL SCREEN 100.
+
+MODULE user_command_0100 INPUT.
+    CASE ok_code.
+        WHEN 'BACK'.
+            SET SCREEN 0.
+        WHEN 'EXIT'.
+            LEAVE PROGRAM.
+    ENDCASE.
+ENDMODULE.
+
+MODULE status_0100 OUTPUT.
+    SET PF-STATUS 'STATUS_100'.
+*SET TITLEBAR 'xxx'.
+ENDMODULE.
+
+MODULE clear_ok_code OUTPUT.
+    CLEAR OK_CODE.
+ENDMODULE.
